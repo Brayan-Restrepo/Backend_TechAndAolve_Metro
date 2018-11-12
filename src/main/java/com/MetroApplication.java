@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.metro.domain.user.model.DestinationHistorical;
 import com.metro.domain.user.model.User;
 import com.metro.domain.user.model.UserRol;
-import com.metro.domain.user.model.statisticalHistorical;
+import com.metro.domain.user.model.StatisticalHistorical;
 
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @SpringBootApplication
@@ -28,21 +28,15 @@ public class MetroApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		User i = new User();
-		i.setUserName("frfrrf");
-		i.setPassword("ewdewde");
-		i.setRol(UserRol.INVIATADO);
-		manager.saveUser(i);
-
+	
 		DestinationHistorical dest = new DestinationHistorical();
-		dest.setUser(i);
+
 		dest.setStationDestiny("1");
 		dest.setStationOrigin("4");
 		manager.saveDestinationHistory(dest);
+		User user = manager.findUser("carlos", "123");
 
-		List<statisticalHistorical> his = manager.findStaticalHistorical();
-		his.forEach(a -> System.out.println(a.getCount()));
-
+		
 	}
 
 }

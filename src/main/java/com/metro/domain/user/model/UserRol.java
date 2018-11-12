@@ -3,7 +3,7 @@ package com.metro.domain.user.model;
 public enum UserRol {
 	
 	INVIATADO("Invitado"),
-	ADMINISTRADO("Administrador");
+	ADMINISTRADOR("Administrador");
 	
 	private String rol;
 	

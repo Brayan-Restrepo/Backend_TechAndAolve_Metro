@@ -3,7 +3,7 @@ package com.metro.repository;
 import java.util.List;
 
 import com.metro.domain.user.model.DestinationHistorical;
-import com.metro.domain.user.model.statisticalHistorical;
+import com.metro.domain.user.model.StatisticalHistorical;
 
 
 public interface IHistoryRepository  {
@@ -14,5 +14,5 @@ public interface IHistoryRepository  {
 	
 	public long countStationbyOriginAndDestiny(String stationOrigin, String stationDestiny);
 	
-	public List<statisticalHistorical> countStadisticByStationOriginAndStationDestiny();
+	public List<StatisticalHistorical> countStadisticByStationOriginAndStationDestiny();
 }

@@ -1,15 +1,14 @@
 package com.metro.domain;
 
-import java.util.List;
-
+import com.metro.domain.user.model.DestinationHistorical;
+import com.metro.domain.user.model.StatisticalHistorical;
+import com.metro.domain.user.model.User;
+import com.metro.repository.IHistoryRepository;
+import com.metro.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.metro.domain.user.model.DestinationHistorical;
-import com.metro.domain.user.model.User;
-import com.metro.domain.user.model.statisticalHistorical;
-import com.metro.repository.IHistoryRepository;
-import com.metro.repository.IUserRepository;
+import java.util.List;
 
 @Service
 public class MetroManager {
@@ -21,15 +20,16 @@ public class MetroManager {
 	private IHistoryRepository historyRepo;
 	
 	
-	public void saveUser(User user) {
-		userRepo.save(user);
-	}
-	
 	public void saveDestinationHistory(DestinationHistorical destinationHistorical) {
 		historyRepo.save(destinationHistorical);
 	}
 	
-	public List<statisticalHistorical> findStaticalHistorical() {
+	public List<StatisticalHistorical> findStaticalHistorical() {
 		return historyRepo.countStadisticByStationOriginAndStationDestiny();
 	}
+	
+	public User findUser(String userName,String password) {
+		return userRepo.findUser(userName, password);
+	}
+	
 }

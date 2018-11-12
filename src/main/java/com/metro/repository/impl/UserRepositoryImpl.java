@@ -2,6 +2,7 @@ package com.metro.repository.impl;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,25 @@ public class UserRepositoryImpl implements IUserRepository{
 		List<UserEntity> usersEntity = userJpa.findAll();
 		
 		return mapper.map(usersEntity, listType);
+	}
+	
+	@Override
+	public boolean existsUser(String userName) {
+	
+		return userJpa.existsById(userName);
+	}
+	
+	@Override
+	public User findUser(String userName, String password) {
+		
+		User user = null;
+		Optional<UserEntity> userEntity = userJpa.findById(userName);
+		boolean isValid =password.equals(userEntity.orElse(new UserEntity()).getPassword());
+		if(isValid) {
+			user = mapper.map(userEntity.orElse(null), User.class);
+		}
+		return user;
+		
 	}
 	
 }

@@ -1,12 +1,12 @@
 package com.metro.domain.user.model;
 
-public class statisticalHistorical {
+public class StatisticalHistorical {
 	
 	private String stationOrigin;
 	private String stationDestiny;
 	private long count;
 
-	public statisticalHistorical(String stationOrigin,String stationDestiny,long count ) {
+	public StatisticalHistorical(String stationOrigin,String stationDestiny,long count ) {
 		
 		this.stationDestiny = stationDestiny;
 		this.stationOrigin = stationOrigin;
