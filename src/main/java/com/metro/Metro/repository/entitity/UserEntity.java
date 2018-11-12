@@ -8,11 +8,9 @@ import java.util.List;
 @Entity
 public class UserEntity {
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
 	
-    @Column(nullable = false, unique = true)
+    
+	@Id
     private String userName;
 
     @Column(nullable = false)
@@ -23,15 +21,7 @@ public class UserEntity {
 
  
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userEntity")
-    private List<HistoryDestinationEntity> historyDestination = new ArrayList<>();
-
-    public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+    private List<DestinationHistoricalEntity> historyDestination = new ArrayList<>();
 
 	public String getUserName() {
 		return userName;
@@ -56,5 +46,4 @@ public class UserEntity {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
-
 }
