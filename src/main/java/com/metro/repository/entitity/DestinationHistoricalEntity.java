@@ -11,7 +11,7 @@ public class DestinationHistoricalEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private UserEntity userEntity;
     
     @Temporal(TemporalType.TIMESTAMP)

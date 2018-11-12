@@ -10,4 +10,8 @@ public interface IUserRepository  {
 	
 	public List<User> findAll();
 	
+	public boolean existsUser(String userName);
+	
+	public User findUser(String userName, String passwprd);
+	
 }

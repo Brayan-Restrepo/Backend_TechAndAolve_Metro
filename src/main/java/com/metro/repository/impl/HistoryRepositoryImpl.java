@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.metro.domain.user.model.DestinationHistorical;
-import com.metro.domain.user.model.statisticalHistorical;
+import com.metro.domain.user.model.StatisticalHistorical;
 import com.metro.mapper.IMapper;
 import com.metro.repository.IHistoryRepository;
 import com.metro.repository.entitity.DestinationHistoricalEntity;
@@ -27,9 +27,7 @@ public class HistoryRepositoryImpl implements IHistoryRepository {
 	@Override
 	public void save(DestinationHistorical destinationHistorical) {
 		
-		UserEntity userEntity =  mapper.map(destinationHistorical.getUser(), UserEntity.class);
 		DestinationHistoricalEntity destHistorical = mapper.map(destinationHistorical, DestinationHistoricalEntity.class);
-		destHistorical.setUserEntity(userEntity);
 		historyJpa.save(destHistorical);
 	}
 
@@ -49,7 +47,7 @@ public class HistoryRepositoryImpl implements IHistoryRepository {
 	}
 
 	@Override
-	public List<statisticalHistorical> countStadisticByStationOriginAndStationDestiny() {
+	public List<StatisticalHistorical> countStadisticByStationOriginAndStationDestiny() {
 		
 		return historyJpa.countStadisticByStationOriginAndStationDestiny();
 	}
