@@ -7,10 +7,12 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.metro.metro.domain.user.HistoryDestination;
+import com.metro.metro.domain.user.model.DestinationHistorical;
+import com.metro.metro.domain.user.model.statisticalHistorical;
 import com.metro.metro.mapper.IMapper;
 import com.metro.metro.repository.IHistoryRepository;
-import com.metro.metro.repository.entitity.HistoryDestinationEntity;
+import com.metro.metro.repository.entitity.DestinationHistoricalEntity;
+import com.metro.metro.repository.entitity.UserEntity;
 import com.metro.metro.repository.jpa.HistoryJpaRepository;
 
 @Repository
@@ -23,17 +25,19 @@ public class HistoryRepositoryImpl implements IHistoryRepository {
 	private IMapper mapper;
 	
 	@Override
-	public void save(HistoryDestination historyDestination) {
+	public void save(DestinationHistorical destinationHistorical) {
 		
-		HistoryDestinationEntity historyDest = mapper.map(historyDestination, HistoryDestinationEntity.class);
-		historyJpa.save(historyDest);
+		UserEntity userEntity =  mapper.map(destinationHistorical.getUser(), UserEntity.class);
+		DestinationHistoricalEntity destHistorical = mapper.map(destinationHistorical, DestinationHistoricalEntity.class);
+		destHistorical.setUserEntity(userEntity);
+		historyJpa.save(destHistorical);
 	}
 
 	@Override
-	public List<HistoryDestination> findAll() {
+	public List<DestinationHistorical> findAll() {
 		
-		Type listType = new TypeToken<List<HistoryDestination>>() {}.getType();
-		List<HistoryDestinationEntity> historyEntity = historyJpa.findAll();
+		Type listType = new TypeToken<List<DestinationHistorical>>() {}.getType();
+		List<DestinationHistoricalEntity> historyEntity = historyJpa.findAll();
 		
 		return mapper.map(historyEntity, listType);
 	}
@@ -42,6 +46,12 @@ public class HistoryRepositoryImpl implements IHistoryRepository {
 	public long countStationbyOriginAndDestiny(String stationOrigin, String stationDestiny) {
 		
 		return historyJpa.countByStationOriginAndStationDestiny(stationOrigin, stationDestiny);
+	}
+
+	@Override
+	public List<statisticalHistorical> countStadisticByStationOriginAndStationDestiny() {
+		
+		return historyJpa.countStadisticByStationOriginAndStationDestiny();
 	}
 
 }

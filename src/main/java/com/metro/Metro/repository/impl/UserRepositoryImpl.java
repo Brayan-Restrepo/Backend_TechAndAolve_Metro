@@ -7,7 +7,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.metro.metro.domain.user.User;
+import com.metro.metro.domain.user.model.User;
 import com.metro.metro.mapper.IMapper;
 import com.metro.metro.repository.IUserRepository;
 import com.metro.metro.repository.entitity.UserEntity;
@@ -38,6 +38,12 @@ public class UserRepositoryImpl implements IUserRepository{
 		List<UserEntity> usersEntity = userJpa.findAll();
 		
 		return mapper.map(usersEntity, listType);
+	}
+	
+	@Override
+	public boolean existsUser(String userName) {
+	
+		return userJpa.existsById(userName);
 	}
 	
 }
