@@ -19,10 +19,6 @@ public class UserEntity {
     @Column(nullable = false)
     private String rol;
 
- 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userEntity")
-    private List<DestinationHistoricalEntity> historyDestination = new ArrayList<>();
-
 	public String getUserName() {
 		return userName;
 	}

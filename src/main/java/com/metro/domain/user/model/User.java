@@ -7,7 +7,6 @@ public class User {
     private String userName;
 	private String password;
     private UserRol rol;
-    private List<DestinationHistorical> history;
     
     public String getUserName() {
 		return userName;
@@ -26,11 +25,5 @@ public class User {
 	}
 	public void setRol(UserRol rol) {
 		this.rol = rol;
-	}
-	public List<DestinationHistorical> getHistory() {
-		return history;
-	}
-	public void setHistory(List<DestinationHistorical> history) {
-		this.history = history;
 	}
 }
