@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.metro.controller.util.ControllerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +31,11 @@ public class ControllerAPI {
     public ResponseEntity<UserRolOutDTO> authenticateUser(@RequestBody UserAuthenticationInDTO user) {
 
         User anUser = metroManager.findUser(user.getUserName(), user.getPassword());
-
+        String userName = user.getUserName();
+        String password = user.getPassword();
         if (anUser != null) {
-            return new ResponseEntity<>(new UserRolOutDTO(anUser.getRol().getRol()), HttpStatus.ACCEPTED);
-        } else if (user.getUserName().equals(user.getPassword())) {
+            return new ResponseEntity<>(new UserRolOutDTO(anUser.getRol().getRol()), HttpStatus.ACCEPTED);        
+        } else if (ControllerUtil.isNumeric(userName) && ControllerUtil.isNumeric(password) && userName.equals(password)) {
             return new ResponseEntity<>(new UserRolOutDTO(UserRol.INVIATADO.getRol()), HttpStatus.ACCEPTED);
         } else {
             return new ResponseEntity<>(new UserRolOutDTO(_INVALID_ACCOUNT), HttpStatus.CONFLICT);
