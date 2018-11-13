@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.metro.domain.user.model.User;
+import com.metro.domain.user.model.UserRol;
 import com.metro.mapper.IMapper;
 import com.metro.repository.IUserRepository;
 import com.metro.repository.entitity.UserEntity;
@@ -54,7 +55,9 @@ public class UserRepositoryImpl implements IUserRepository{
 		Optional<UserEntity> userEntity = userJpa.findById(userName);
 		boolean isValid =password.equals(userEntity.orElse(new UserEntity()).getPassword());
 		if(isValid) {
-			user = mapper.map(userEntity.orElse(null), User.class);
+			UserEntity userpers = userEntity.orElse(null);
+			user = mapper.map(userpers, User.class);
+			user.setRol(UserRol.getUserRolByrol(userpers.getRol()));
 		}
 		return user;
 		

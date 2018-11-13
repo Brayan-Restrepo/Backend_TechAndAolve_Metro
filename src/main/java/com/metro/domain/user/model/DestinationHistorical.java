@@ -4,19 +4,10 @@ import java.util.Date;
 
 public class DestinationHistorical {
 	
-	private User user;
     private Date date;
     private String stationOrigin;
     private String stationDestiny;
 	
-    public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public Date getDate() {
 		return date;
 	}

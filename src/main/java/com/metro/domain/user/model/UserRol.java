@@ -15,5 +15,18 @@ public enum UserRol {
 	public String getRol() {
 		return rol;
 	}
+	
+	public static UserRol getUserRolByrol(String rol) {
+		
+		UserRol[] userRoles = UserRol.values();
+		UserRol userRolSelect = null;
+		for(UserRol userRol : userRoles) {
+			if(userRol.rol.equals(rol)) {
+				userRolSelect = userRol;
+				break;
+			}
+		}
+		return userRolSelect;
+	}
 
 }

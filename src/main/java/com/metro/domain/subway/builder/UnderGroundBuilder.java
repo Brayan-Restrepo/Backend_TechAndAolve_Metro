@@ -21,6 +21,10 @@ public class UnderGroundBuilder {
 		createRouteF();
 
 	}
+	
+	public UnderGround getUnderGround() {
+		return this.underGround;
+	}
 
 	private void createStations() {
 
@@ -29,6 +33,7 @@ public class UnderGroundBuilder {
 			Station station = new Station();
 			station.setName(String.valueOf(i));
 			stations[i - 1] = station;
+			underGround.addStation(stations[i-1]);
 		}
 
 	}

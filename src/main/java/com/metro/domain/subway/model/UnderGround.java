@@ -1,12 +1,19 @@
 package com.metro.domain.subway.model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class UnderGround {
 
-	private HashMap<Integer, RailRoadTrack> railRoadTracks;
+	private Map<Integer, RailRoadTrack> railRoadTracks;
 
+	private Map<Integer, Station> stations;
 	
+	
+	public UnderGround() {
+		this.stations = new HashMap<>();
+		this.railRoadTracks = new HashMap<>();
+	}
 	public boolean addWay(Station station1, Station station2, int peso, Route route) {
 
 		if (station1.equals(station2))
@@ -23,6 +30,20 @@ public class UnderGround {
 		station1.addVicinity(railRoadTrack);
 		station1.addVicinity(railRoadTrack);
 		return true;
+	}
+	
+	public boolean addStation(Station station) {
+		
+		if(stations.containsKey(station.hashCode())) {
+			return false;
+		}
+		stations.put(station.hashCode(), station);
+		return true;
+	} 
+	
+	
+	public Map<Integer, Station> getStations() {
+		return this.stations;
 	}
 	
 	

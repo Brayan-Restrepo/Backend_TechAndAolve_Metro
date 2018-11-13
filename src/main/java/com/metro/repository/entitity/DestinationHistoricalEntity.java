@@ -11,9 +11,6 @@ public class DestinationHistoricalEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @ManyToOne(optional = true)
-    private UserEntity userEntity;
-    
     @Temporal(TemporalType.TIMESTAMP)
     private Date date = new Date();
     
@@ -46,14 +43,6 @@ public class DestinationHistoricalEntity {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public UserEntity getUserEntity() {
-		return userEntity;
-	}
-
-	public void setUserEntity(UserEntity userEntity) {
-		this.userEntity = userEntity;
 	}
 
 	public Date getDate() {

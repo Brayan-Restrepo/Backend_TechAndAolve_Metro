@@ -15,7 +15,7 @@ import com.metro.domain.user.model.StatisticalHistorical;
 
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @SpringBootApplication
-public class MetroApplication implements CommandLineRunner {
+public class MetroApplication  {
 
 	@Autowired
 	private MetroManager manager;
