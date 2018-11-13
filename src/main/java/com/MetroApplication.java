@@ -25,5 +25,18 @@ public class MetroApplication  {
 
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+
+	
+		DestinationHistorical dest = new DestinationHistorical();
+
+		dest.setStationDestiny("1");
+		dest.setStationOrigin("4");
+		manager.saveDestinationHistory(dest);
+		User user = manager.findUser("carlos", "123");
+
+		
+	}
 
 }

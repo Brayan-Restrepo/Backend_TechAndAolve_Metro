@@ -26,12 +26,11 @@ public class MetroManager {
 	private IHistoryRepository historyRepo;
 	
 	private UnderGround underGround;
-	
+  
 	public MetroManager() {
 		UnderGroundBuilder builder =  new UnderGroundBuilder();
 		this.underGround = builder.getUnderGround();
 	}
-	
 	
 	public void saveDestinationHistory(DestinationHistorical destinationHistorical) {
 		historyRepo.save(destinationHistorical);
@@ -52,5 +51,4 @@ public class MetroManager {
 		stationList.forEach(station -> stationsName.add(station.getName()));
 		return stationsName;
 	}
-	
 }
