@@ -22,9 +22,6 @@ public class ControllerAPI {
 
     private final String _INVALID_ACCOUNT = "La cuenta o la contraseña es incorrecta.";
 
-    private static final String _USER_NOT_FOUND = "Esta cuenta Microsoft no existe.";
-    private static final String _ACOUNT = "La cuenta o la contraseña es incorrecta.";
-
     @Autowired
     private MetroManager metroManager;
 
