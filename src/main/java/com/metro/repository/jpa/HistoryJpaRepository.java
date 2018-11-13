@@ -15,11 +15,12 @@ public interface HistoryJpaRepository extends JpaRepository<DestinationHistorica
 	
 	
 	 @Query("SELECT " +
-	           "    new com.metro.domain.user.model.StatisticalHistorical(h.stationOrigin, h.stationDestiny, COUNT(h)) " +
+	           "    new com.metro.domain.user.model.StatisticalHistorical(h.stationOrigin, h.stationDestiny, COUNT(h) as numero) " +
 	           "FROM " +
 	           "    DestinationHistoricalEntity h " +
 	           "GROUP BY " +
-	           "    h.stationOrigin, h.stationDestiny")
+	           "    h.stationOrigin, h.stationDestiny " +
+	           "ORDER BY numero desc")
 	    List<StatisticalHistorical> countStadisticByStationOriginAndStationDestiny();
 
 }

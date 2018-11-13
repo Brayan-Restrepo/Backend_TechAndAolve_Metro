@@ -2,6 +2,7 @@ package com.metro.controller;
 
 import com.metro.domain.MetroManager;
 import com.metro.domain.subway.model.Station;
+import com.metro.domain.user.model.DestinationHistorical;
 import com.metro.domain.user.model.StatisticalHistorical;
 import com.metro.domain.user.model.User;
 import com.metro.domain.user.model.UserRol;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import com.metro.controller.util.ControllerUtil;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -56,8 +58,14 @@ public class ControllerAPI {
 
     @CrossOrigin(value = "*")
     @PostMapping("/fastestTravel")
-    public Travel retrievefastestTravel(@RequestBody RequestTravel requestTravel) {
-
-        return new Travel(new ArrayList<Station>(), "10 min");
+    public Travel retrievefastestTravel(@RequestBody RequestTravel requestTravel) {	
+		
+		DestinationHistorical destinationHistorical = new DestinationHistorical();
+		destinationHistorical.setDate(new Date());
+		destinationHistorical.setStationDestiny(requestTravel.getFinalStation());
+		destinationHistorical.setStationOrigin(requestTravel.getInitialStation());
+		
+    	metroManager.saveDestinationHistory(destinationHistorical);
+        return new Travel(new ArrayList<Station>(), "10 x- min");
     }
 }
